@@ -13,6 +13,8 @@ BLOCK_CHAR_NGRAM = (2, 4)          # analyzer="char_wb"
 BLOCK_RARE_TOKEN_MAX_COUNT = 30    # a token is "rare" if it appears in <= this many pool records
 BLOCK_CHUNK_SIZE = 2000            # S1 rows per sparse matmul chunk
 BLOCK_MIN_COUNTRY_POOL = 50        # below this, search the whole pool instead of the same country
+BASELINE_TOPK = 10                 # --baseline: candidates per S1
+BASELINE_MATCH_COS = 0.8           # --baseline: name cosine needed to count as a match
 
 # --- Vidushi: model ---
 WARMUP_NEG_PER_POS = 5
