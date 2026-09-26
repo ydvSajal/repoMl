@@ -1,0 +1,12 @@
+dataset/
+data/*
+!data/decision_params.json
+!data/splits.json
+models/
+*.parquet
+*.pkl
+*.joblib
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+*.zip
