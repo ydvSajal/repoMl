@@ -60,7 +60,7 @@ gh pr merge --squash --delete-branch
 - **Only edit files owned by the person you are working for** (see §2). If a change is needed in someone else's file, stop and tell your human to ask the owner.
 - **Follow the data contracts in `docs/04-TRD.md` §3 exactly:** file names, column names, dtypes, and function signatures. Do not rename columns or change signatures.
 - **Always create a branch, commit, push and open a PR.** Never merge your own PR. Never push to `main`.
-- Do not commit anything in `dataset/`, `data/`, `models/`, or large files (> 5 MB). These are gitignored. The only exceptions are `data/splits.json` and `data/decision_params.json`, which are small and needed for reproducibility.
+- Do not commit anything in `dataset/`, `data/`, `models/`, or large files (> 5 MB). These are gitignored. The only exception is `data/decision_params.json`, which is small and needed for reproducibility. `data/splits.json` is ~35 MB (2.2M S1 IDs), so it is not committed: regenerate it with `python -m src.split`, which is deterministic (fixed `SEED`).
 - Do not add dependencies without adding them to `requirements.txt` in a PR that Sajal reviews.
 - Do not call any external API, geocoder or web database to look up businesses. That leads to **disqualification** under the competition rules.
 - Keep randomness reproducible by using `SEED` from `src/config.py` everywhere.
@@ -82,7 +82,7 @@ amazon-er/
 ├── CLAUDE.md                 # points Claude Code to AGENTS.md
 ├── README.md                 # how to run end-to-end
 ├── requirements.txt
-├── .gitignore                # dataset/, data/* (except splits.json, decision_params.json), models/, *.parquet, .venv/
+├── .gitignore                # dataset/, data/* (except decision_params.json), models/, *.parquet, .venv/
 ├── .github/pull_request_template.md
 ├── docs/                     # PRD, TRD, timeline, division, architecture, per-person agent files
 ├── dataset/                  # provided data (gitignored)

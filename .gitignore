@@ -1,7 +1,6 @@
 dataset/
 data/*
 !data/decision_params.json
-!data/splits.json
 models/
 *.parquet
 *.pkl

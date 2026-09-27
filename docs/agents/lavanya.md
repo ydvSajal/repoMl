@@ -51,7 +51,7 @@ You are the coding agent working for **Lavanya**. Read `AGENTS.md` and `docs/04-
 - Stratify by `country × is_singleton` so val has the same mix as train.
 - Write `data/splits.json` as `{"train": [...], "val": [...], "seed": 42}`.
 - Add a `__main__` block so `python -m src.split` creates the file.
-- Commit `data/splits.json` (allowed by `.gitignore`) so everyone scores on the identical split.
+- Do **not** commit `data/splits.json` (~35 MB). Everyone regenerates the identical split with `python -m src.split` (fixed `SEED`).
 
 ## Step L3: scorer + blocking recall (H1.5 → H2)
 
@@ -116,7 +116,7 @@ You are the coding agent working for **Lavanya**. Read `AGENTS.md` and `docs/04-
 **Do:**
 1. Implement `decide(preds, threshold, min_top, one_to_one)` per TRD §5.6. The return value must contain **only S1 IDs present in `preds`**. `run.py` fills in the missing S1s as empty.
 2. Implement `tune(preds_val, truth_val)`: grid-search `THRESHOLD_GRID × MIN_TOP_GRID`, with `one_to_one` fixed by the L1 finding. Score with `f05_macro` over **all val S1 IDs**, including S1s that had no candidates. Return the best params plus `val_f05`.
-3. When Vidushi posts "preds_val ready", run the tuning, save `data/decision_params.json`, and commit it. `.gitignore` already allows this file and `data/splits.json`, so the test run and the final package can reproduce your decisions.
+3. When Vidushi posts "preds_val ready", run the tuning, save `data/decision_params.json`, and commit it. `.gitignore` allows this file, so the test run and the final package can reproduce your decisions.
 4. Report the results in the PR description:
    - the best params and val F0.5
    - F0.5 at the plain 0.5 threshold, for comparison
